@@ -1,4 +1,6 @@
 name: Get Selected
+icon: check-square
+color: green
 description:
   Returns a string with the name of the selected checkboxes on a
   workflow_dispatch event. Separator defaults to " "

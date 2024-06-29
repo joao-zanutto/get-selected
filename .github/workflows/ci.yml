@@ -55,26 +55,24 @@ jobs:
         id: npm-ci-test
         run: npm run ci-test
 
-  test-action:
+  get-selected:
     name: GitHub Actions Test
     runs-on: ubuntu-latest
     outputs:
-      selected: ${{ steps.test-action.outputs.selected}}
+      selected: ${{ steps.get-selected-step.outputs.selected}}
     steps:
       - name: Checkout
         id: checkout
         uses: actions/checkout@v4
 
       - name: Test Local Action
-        id: test-action
+        id: get-selected-step
         uses: ./
 
   consumer:
     runs-on: ubuntu-latest
     name: Consume Output
-    needs: test-action
+    needs: get-selected
     steps:
       - name: Print
-        run: echo $SELECTED
-        env:
-          SELECTED: ${{ needs.test-action.outputs.selected }}
+        run: echo ${{ needs.get-selected.outputs.selected }}

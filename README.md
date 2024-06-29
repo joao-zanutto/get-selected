@@ -1,28 +1,11 @@
-# Hello, World! JavaScript Action
+# Get Selected
 
 [![GitHub Super-Linter](https://github.com/actions/hello-world-javascript-action/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
 ![CI](https://github.com/actions/hello-world-javascript-action/actions/workflows/ci.yml/badge.svg)
 
-This action prints `Hello, World!` or `Hello, <who-to-greet>!` to the log. To
-learn how this action was built, see
-[Creating a JavaScript action](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action).
-
-## Create Your Own Action
-
-To create your own action, you can use this repository as a template! Just
-follow the below instructions:
-
-1. Click the **Use this template** button at the top of the repository
-1. Select **Create a new repository**
-1. Select an owner and name for your new repository
-1. Click **Create repository**
-1. Clone your new repository
-
-> [!CAUTION]
->
-> Make sure to remove or update the [`CODEOWNERS`](./CODEOWNERS) file! For
-> details on how to use this file, see
-> [About code owners](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners).
+This action returns a list with the names of selected checkboxes from the input
+of a `workflow_dispatch` event. It supports the use of custom separator strings
+and an ignore list, which will be ignored from the output.
 
 ## Usage
 
@@ -34,40 +17,49 @@ name: Example Workflow
 on:
   workflow_dispatch:
     inputs:
-      who-to-greet:
-        description: Who to greet in the log
-        required: true
-        default: 'World'
-        type: string
+      api:
+        type: boolean
+        default: false
+      worker:
+        type: boolean
+        default: true
 
 jobs:
-  say-hello:
-    name: Say Hello
+  get-selected:
+    name: GitHub Actions Test
     runs-on: ubuntu-latest
-
+    outputs: # This needs to be set if you want to consume the output on another job
+      selected: ${{ steps.get-selected-step.outputs.selected}}
     steps:
-      # Change @main to a specific commit SHA or version tag, e.g.:
-      # actions/hello-world-javascript-action@e76147da8e5c81eaf017dede5645551d4b94427b
-      # actions/hello-world-javascript-action@v1.2.3
-      - name: Print to Log
-        id: print-to-log
-        uses: actions/hello-world-javascript-action@main
-        with:
-          who-to-greet: ${{ inputs.who-to-greet }}
-```
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
 
-For example workflow runs, check out the
-[Actions tab](https://github.com/actions/hello-world-javascript-action/actions)!
-:rocket:
+      - name: Test Local Action
+        id: get-selected-step
+        uses: joao-zanutto/get-selected@v1
+
+      - name: Consume on the same job
+        run: echo ${{ steps.get-selected-step.outputs.selected }}
+
+  consume-on-another-job:
+    runs-on: ubuntu-latest
+    name: Consume Output
+    needs: get-selected
+    steps:
+      - name: Print
+        run: echo ${{ needs.get-selected.outputs.selected }}
+```
 
 ## Inputs
 
-| Input          | Default | Description                     |
-| -------------- | ------- | ------------------------------- |
-| `who-to-greet` | `World` | The name of the person to greet |
+| Input       | Required | Default | Description                                                          |
+| ----------- | -------- | ------- | -------------------------------------------------------------------- |
+| `ignore`    | `false`  | ` `     | Comma-separated list of checkboxes to ommit from the output          |
+| `separator` | `false`  | `' '`   | Separator to append between each of the options in the output string |
 
 ## Outputs
 
-| Output | Description             |
-| ------ | ----------------------- |
-| `time` | The time we greeted you |
+| Output     | Description                      |
+| ---------- | -------------------------------- |
+| `selected` | Names of the selected checkboxes |
