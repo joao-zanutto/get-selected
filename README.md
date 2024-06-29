@@ -17,7 +17,9 @@ on:
     inputs: # Example inputs
       api:
         type: boolean
-      worker:
+      worker1:
+        type: boolean
+      worker2:
         type: boolean
 
 jobs:
@@ -32,7 +34,13 @@ jobs:
       - run: echo ${{ steps.get-selected-step.outputs.selected }}
 ```
 
+### Working example
+
+Running the workflow:
+
 ![image](https://github.com/joao-zanutto/get-selected/assets/11475695/fd4382c4-6733-45ca-b40a-f43df5f090ca)
+
+Will generate the following output:
 
 ## Referencing the output on a different job
 
