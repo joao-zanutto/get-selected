@@ -42,6 +42,8 @@ Running the workflow:
 
 Will generate the following output:
 
+![image](https://github.com/joao-zanutto/get-selected/assets/11475695/f0d4a4c8-9523-477e-87ec-b7110b5c0816)
+
 ## Referencing the output on a different job
 
 ```yaml
