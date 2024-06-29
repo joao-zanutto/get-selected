@@ -32,6 +32,8 @@ jobs:
       - run: echo ${{ steps.get-selected-step.outputs.selected }}
 ```
 
+![image](https://github.com/joao-zanutto/get-selected/assets/11475695/fd4382c4-6733-45ca-b40a-f43df5f090ca)
+
 ## Referencing the output on a different job
 
 ```yaml
