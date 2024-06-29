@@ -58,6 +58,7 @@ jobs:
   get-selected:
     name: GitHub Actions Test
     runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
     outputs:
       selected: ${{ steps.get-selected-step.outputs.selected}}
     steps:
