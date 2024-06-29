@@ -7,9 +7,6 @@ on:
       - main
   workflow_dispatch:
     inputs:
-      environment:
-        type: environment
-        default: dev
       api:
         type: boolean
         default: true
