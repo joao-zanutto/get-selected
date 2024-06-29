@@ -29155,6 +29155,8 @@ const github = __nccwpck_require__(5438)
  */
 async function run() {
   try {
+    // TODO: Assert event is workflow_dispatch
+
     var separator = core.getInput('separator')
     if (separator == '') {
       separator = ' '
@@ -29164,13 +29166,14 @@ async function run() {
     const ignoreList = core.getInput('ignore')
     const inputs = github.context.payload.inputs
     core.info(`Loaded inputs: ${JSON.stringify(inputs, null, 2)}`)
-    core.info(`Ignoring inputs: ${ignoreList}`)
+    core.info(`[NOT IMPLEMENTED] Ignoring inputs: ${ignoreList}`)
 
     var output = ''
 
     for (let key in inputs) {
       if (inputs.hasOwnProperty(key)) {
         value = inputs[key]
+        // TODO: implement ignore list checking
         if (value == 'True') {
           output += key
           output += separator
