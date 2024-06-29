@@ -11,44 +11,46 @@ and an ignore list, which will be ignored from the output.
 
 Here's an example of how to use this action in a workflow file:
 
-```yaml
-name: Example Workflow
-
+```yml
 on:
   workflow_dispatch:
-    inputs:
+    inputs: # Example inputs
       api:
         type: boolean
-        default: false
       worker:
         type: boolean
-        default: true
 
 jobs:
   get-selected:
-    name: Get Selected Checkboxes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: get-selected-step
+        uses: joao-zanutto/get-selected@v1
+
+      - run: echo ${{ steps.get-selected-step.outputs.selected }}
+```
+
+## Referencing the output on a different job
+
+```yaml
+jobs:
+  get-selected:
     runs-on: ubuntu-latest
     outputs: # This needs to be set if you want to consume the output on another job
       selected: ${{ steps.get-selected-step.outputs.selected}}
     steps:
-      - name: Checkout
-        id: checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Get Selected
-        id: get-selected-step
+      - id: get-selected-step
         uses: joao-zanutto/get-selected@v1
-
-      - name: Consume on the same job
-        run: echo ${{ steps.get-selected-step.outputs.selected }}
 
   consume-on-another-job:
     runs-on: ubuntu-latest
-    name: Consume Output
     needs: get-selected
     steps:
-      - name: Print
-        run: echo ${{ needs.get-selected.outputs.selected }}
+      - run: echo ${{ needs.get-selected.outputs.selected }}
 ```
 
 ## Inputs
