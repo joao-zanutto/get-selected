@@ -26,7 +26,7 @@ async function run() {
       if (inputs.hasOwnProperty(key)) {
         value = inputs[key]
         // TODO: implement ignore list checking
-        if (value == 'True') {
+        if (value == 'true') {
           output += key
           output += separator
         }

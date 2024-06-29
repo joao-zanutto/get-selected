@@ -2,8 +2,8 @@
   "action": "workflow_dispatch",
   "inputs": {
       "environment": "dev",
-      "api": "True",
-      "worker1": "False",
-      "woker2": "True"
+      "api": "true",
+      "worker1": "false",
+      "woker2": "true"
   }
 }
