@@ -7,20 +7,33 @@ const github = require('@actions/github')
  */
 async function run() {
   try {
-    // The `who-to-greet` input is defined in action metadata file
-    const whoToGreet = core.getInput('who-to-greet', { required: true })
-    core.info(`Hello, ${whoToGreet}!`)
+    // TODO: Assert event is workflow_dispatch
 
-    // Get the current time and set as an output
-    const time = new Date().toTimeString()
-    core.setOutput('time', time)
+    var separator = core.getInput('separator')
+    if (separator == '') {
+      separator = ' '
+    }
+    core.info(`Using separator "${separator}"`)
 
-    // Output the payload for debugging
-    core.info(
-      `The event payload: ${JSON.stringify(github.context.payload, null, 2)}`
-    )
+    const ignoreList = core.getInput('ignore')
+    const inputs = github.context.payload.inputs
+    core.info(`Loaded inputs: ${JSON.stringify(inputs, null, 2)}`)
+    core.info(`[NOT IMPLEMENTED] Ignoring inputs: ${ignoreList}`)
+
+    var output = ''
+
+    for (let key in inputs) {
+      if (inputs.hasOwnProperty(key)) {
+        value = inputs[key]
+        // TODO: implement ignore list checking
+        if (value == 'True') {
+          output += key
+          output += separator
+        }
+      }
+    }
+    core.setOutput('selected', output)
   } catch (error) {
-    // Fail the workflow step if an error occurs
     core.setFailed(error.message)
   }
 }

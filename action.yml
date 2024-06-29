@@ -1,18 +1,21 @@
-name: Hello, World!
-description: Greet someone and record the time
-author: GitHub Actions
+name: Get Selected
+description:
+  Returns a string with the name of the selected checkboxes on a
+  workflow_dispatch event. Separator defaults to " "
+author: joao-zanutto
 
-# Define your inputs here.
 inputs:
-  who-to-greet:
-    description: Who to greet
-    required: true
-    default: World
+  ignore:
+    description: List of options to ignore during assertion
+    required: false
+  separator:
+    description: String used to separate each of the selected outputs
+    required: false
+    default: ' '
 
-# Define your outputs here.
 outputs:
-  time:
-    description: The time we greeted you
+  selected:
+    description: Name of the selected checkboxes
 
 runs:
   using: node20

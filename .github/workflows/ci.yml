@@ -5,6 +5,20 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: environment
+        default: dev
+      api:
+        type: boolean
+        default: true
+      worker1:
+        type: boolean
+        default: true
+      worker2:
+        type: boolean
+        default: true
 
 permissions:
   contents: read
@@ -13,7 +27,6 @@ jobs:
   test-javascript:
     name: JavaScript Tests
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         id: checkout
@@ -45,7 +58,8 @@ jobs:
   test-action:
     name: GitHub Actions Test
     runs-on: ubuntu-latest
-
+    outputs:
+      selected: ${{ steps.test-action.outputs.selected}}
     steps:
       - name: Checkout
         id: checkout
@@ -54,9 +68,13 @@ jobs:
       - name: Test Local Action
         id: test-action
         uses: ./
-        with:
-          who-to-greet: GitHub
 
-      - name: Print Output
-        id: output
-        run: echo "${{ steps.test-action.outputs.time }}"
+  consumer:
+    runs-on: ubuntu-latest
+    name: Consume Output
+    needs: test-action
+    steps:
+      - name: Print
+        run: echo $SELECTED
+        env:
+          SELECTED: ${{ needs.test-action.outputs.selected }}
