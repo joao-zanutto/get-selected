@@ -26,7 +26,7 @@ on:
 
 jobs:
   get-selected:
-    name: GitHub Actions Test
+    name: Get Selected Checkboxes
     runs-on: ubuntu-latest
     outputs: # This needs to be set if you want to consume the output on another job
       selected: ${{ steps.get-selected-step.outputs.selected}}
@@ -35,7 +35,7 @@ jobs:
         id: checkout
         uses: actions/checkout@v4
 
-      - name: Test Local Action
+      - name: Get Selected
         id: get-selected-step
         uses: joao-zanutto/get-selected@v1
 
