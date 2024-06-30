@@ -50,7 +50,7 @@ Will generate the following output:
 jobs:
   get-selected:
     runs-on: ubuntu-latest
-    outputs: # This needs to be set if you want to consume the output on another job
+    outputs: # Set this to consume the output on other job
       selected: ${{ steps.get-selected-step.outputs.selected}}
     steps:
       - uses: actions/checkout@v4
@@ -67,10 +67,10 @@ jobs:
 
 ## Inputs
 
-| Input       | Required | Default | Description                                                          |
-| ----------- | -------- | ------- | -------------------------------------------------------------------- |
-| `ignore`    | `false`  | ` `     | Comma-separated list of checkboxes to ommit from the output          |
-| `separator` | `false`  | `' '`   | Separator to append between each of the options in the output string |
+| Input       | Required | Default | Description                           |
+| ----------- | -------- | ------- | ------------------------------------- |
+| `ignore`    | `false`  | `null`  | Comma-separated options to ignore     |
+| `separator` | `false`  | `' '`   | Separator string to use in the output |
 
 ## Outputs
 
