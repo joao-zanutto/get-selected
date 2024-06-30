@@ -9,27 +9,23 @@ async function run() {
   try {
     // TODO: Assert event is workflow_dispatch
 
-    var separator = core.getInput('separator')
-    if (separator == '') {
-      separator = ' '
-    }
+    const separator = core.getInput('separator') === "" ? " " : core.getInput('separator')
     core.info(`Using separator "${separator}"`)
 
     const ignoreList = core.getInput('ignore').split(',')
     const inputs = github.context.payload.inputs
     core.info(`Loaded inputs: ${JSON.stringify(inputs, null, 2)}`)
-    core.info(`[NOT IMPLEMENTED] Ignoring inputs: ${ignoreList}`)
+    core.info(`Ignoring inputs: ${ignoreList}`)
 
-    var output = ''
+    let output = ''
 
-    for (let key in inputs) {
+    for (const key in inputs) {
       if (ignoreList.includes(key)) continue
-      if (inputs.hasOwnProperty(key)) {
-        value = inputs[key]
-        if (value == 'true') {
-          output += key
-          output += separator
-        }
+
+      const value = inputs[key]
+      if (value === 'true') {
+        output += key
+        output += separator
       }
     }
     core.setOutput('selected', output)
