@@ -66,6 +66,8 @@ jobs:
       - name: Test Local Action
         id: get-selected-step
         uses: ./
+        with:
+          ignore: api
 
   consumer:
     runs-on: ubuntu-latest

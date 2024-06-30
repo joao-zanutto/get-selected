@@ -29163,7 +29163,7 @@ async function run() {
     }
     core.info(`Using separator "${separator}"`)
 
-    const ignoreList = core.getInput('ignore')
+    const ignoreList = core.getInput('ignore').split(',')
     const inputs = github.context.payload.inputs
     core.info(`Loaded inputs: ${JSON.stringify(inputs, null, 2)}`)
     core.info(`[NOT IMPLEMENTED] Ignoring inputs: ${ignoreList}`)
@@ -29173,7 +29173,7 @@ async function run() {
     for (let key in inputs) {
       if (inputs.hasOwnProperty(key)) {
         value = inputs[key]
-        // TODO: implement ignore list checking
+        if (ignoreList.includes(key)) continue
         if (value == 'true') {
           output += key
           output += separator
