@@ -67,7 +67,7 @@ jobs:
         id: get-selected-step
         uses: ./
         with:
-          ignore: api
+          ignore: api,worker2
 
   consumer:
     runs-on: ubuntu-latest

@@ -9,7 +9,8 @@ async function run() {
   try {
     // TODO: Assert event is workflow_dispatch
 
-    const separator = core.getInput('separator') === "" ? " " : core.getInput('separator')
+    const separator =
+      core.getInput('separator') === '' ? ' ' : core.getInput('separator')
     core.info(`Using separator "${separator}"`)
 
     const ignoreList = core.getInput('ignore').split(',')
