@@ -66,8 +66,7 @@ jobs:
         id: get-selected-step
         uses: ./
         with:
-          format: 'list'
-          ignore: api,worker2
+          format: 'json'
 
   consumer:
     runs-on: ubuntu-latest
