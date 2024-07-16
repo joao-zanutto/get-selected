@@ -4,6 +4,6 @@
       "environment": "dev",
       "api": "true",
       "worker1": "false",
-      "woker2": "true"
+      "worker2": "true"
   }
 }

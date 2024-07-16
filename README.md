@@ -1,7 +1,7 @@
 # Get Selected
 
-[![GitHub Super-Linter](https://github.com/actions/hello-world-javascript-action/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
-![CI](https://github.com/actions/hello-world-javascript-action/actions/workflows/ci.yml/badge.svg)
+[![GitHub Super-Linter](https://github.com/joao-zanutto/get-selected/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
+![CI](https://github.com/joao-zanutto/get-selected/actions/workflows/ci.yml/badge.svg)
 
 This action returns a list with the names of selected checkboxes from the input
 of a `workflow_dispatch` event. It supports the use of custom separator strings
@@ -67,10 +67,11 @@ jobs:
 
 ## Inputs
 
-| Input       | Required | Default | Description                           |
-| ----------- | -------- | ------- | ------------------------------------- |
-| `ignore`    | `false`  | `null`  | Comma-separated options to ignore     |
-| `separator` | `false`  | `' '`   | Separator string to use in the output |
+| Input       | Required | Default  | Description                             |
+| ----------- | -------- | -------- | --------------------------------------- |
+| `ignore`    | `false`  | `null`   | Comma-separated options to ignore       |
+| `format`    | `false`  | `'list'` | Output format. `list` or `json`         |
+| `separator` | `false`  | `' '`    | Separator; only vaid for `format: list` |
 
 ## Outputs
 

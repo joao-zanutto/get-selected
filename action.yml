@@ -11,8 +11,14 @@ inputs:
   ignore:
     description: List of options to ignore during assertion
     required: false
+  format:
+    description: Output format. Valid values are `list` (default) and `json`
+    required: false
+    default: list
   separator:
-    description: String used to separate each of the selected outputs
+    description:
+      String used to separate each of the selected outputs. Only valid when
+      `format === 'list'`
     required: false
     default: ' '
 
