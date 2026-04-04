@@ -1,6 +1,6 @@
 /**
  * The entrypoint for the action.
  */
-const { run } = require('./main')
+const { run } = await import('./main')
 
 run()

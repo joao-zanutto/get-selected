@@ -1,5 +1,5 @@
-const core = require('@actions/core')
-const github = require('@actions/github')
+const core = await import('@actions/core')
+const github = await import('@actions/github')
 
 /**
  * The main function for the action.
