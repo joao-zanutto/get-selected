@@ -1,5 +1,5 @@
 env:
-  commonjs: true
+  commonjs: false
   es6: true
   jest: true
   node: true
@@ -41,6 +41,7 @@ rules:
     'eslint-comments/no-use': 'off',
     'eslint-comments/no-unused-disable': 'off',
     'i18n-text/no-en': 'off',
+    'import/extensions': 'off',
     'import/no-commonjs': 'off',
     'import/no-namespace': 'off',
     'no-console': 'off',
