@@ -1,16 +1,17 @@
 {
-  "name": "hello-world-javascript-action",
-  "description": "This action prints `Hello, World!` or `Hello, <who-to-greet>!` to the log",
-  "version": "1.0.0",
-  "author": "",
+  "name": "get-selected",
+  "description": "GitHub Actions that retrieves the values of selected checkboxes for workflow_dispatch events",
+  "version": "2.0.1",
+  "type": "module",
+  "author": "joao-zanutto",
   "private": true,
-  "homepage": "https://github.com/actions/hello-world-javascript-action#readme",
+  "homepage": "https://github.com/joao-zanutto/get-selected",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/hello-world-javascript-action.git"
+    "url": "git+https://github.com/joao-zanutto/get-selected.git"
   },
   "bugs": {
-    "url": "https://github.com/actions/hello-world-javascript-action/issues"
+    "url": "https://github.com/joao-zanutto/get-selected/issues"
   },
   "keywords": [
     "GitHub",
@@ -21,7 +22,7 @@
     ".": "./dist/index.js"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   },
   "scripts": {
     "bundle": "npm run format:write && npm run package",
