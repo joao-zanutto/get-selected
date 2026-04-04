@@ -1,11 +1,11 @@
-const core = await import('@actions/core')
-const github = await import('@actions/github')
+import * as core from '@actions/core'
+import * as github from '@actions/github'
 
 /**
  * The main function for the action.
  * @returns {Promise<void>} Resolves when the action is complete.
  */
-async function run() {
+export async function run() {
   try {
     // TODO: Assert event is workflow_dispatch
     const format = core.getInput('format')
@@ -31,8 +31,4 @@ async function run() {
   } catch (error) {
     core.setFailed(error.message)
   }
-}
-
-module.exports = {
-  run
 }

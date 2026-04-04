@@ -1,6 +1,6 @@
 /**
  * The entrypoint for the action.
  */
-const { run } = await import('./main')
+import { run } from './main.js'
 
 run()
