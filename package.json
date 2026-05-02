@@ -65,7 +65,7 @@
     ]
   },
   "dependencies": {
-    "@actions/core": "^3.0.0",
+    "@actions/core": "^3.0.1",
     "@actions/github": "^9.0.0"
   },
   "devDependencies": {
